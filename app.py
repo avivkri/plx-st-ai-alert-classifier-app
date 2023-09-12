@@ -10,6 +10,16 @@ def parse_response(query_response):
     )
     return predicted_label, score
 
+def convert_to_alert_severity(predicted_label):
+    label_to_severity_map = {
+        "LABEL_0": "P0",
+        "LABEL_1": "P1",
+        "LABEL_2": "P2",
+        "LABEL_3": "P3",
+        "LABEL_4": "P4"
+    }
+    return label_to_severity_map.get(predicted_label, 'Unknown')
+
 # Streamlit app
 def main():
     st.title("Model Inference App")
@@ -40,6 +50,8 @@ def main():
                 predicted_label, score = parse_response(response.text)
                 st.subheader("Inference")
                 st.metric("Label", predicted_label)
+                alert_severity = convert_to_alert_severity(predicted_label)
+                st.metric("Alert Severity", alert_severity)
                 st.metric("Score", score)
             else:
                 st.error(f"Request failed with status code {response.status_code}")
