@@ -24,6 +24,7 @@ def convert_to_alert_severity(predicted_label):
 def main():
     st.title("AI Alert Classifier - Model Inference")
 
+    st.subheader("Input")
     # Input text area
     input_data = st.text_area("Enter Input Data", value="[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.")
 
@@ -53,7 +54,7 @@ def main():
                 col1, col2, col3 = st.columns(3)
                 col1.metric("Label", predicted_label)
                 col2.metric("Alert Severity", alert_severity)
-                col3.metric("Score", score)
+                col3.metric("Score", round(score, 5))
             else:
                 st.error(f"Request failed with status code {response.status_code}")
 
