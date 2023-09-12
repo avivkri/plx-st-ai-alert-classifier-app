@@ -94,7 +94,7 @@ def main():
                 col1, col2, col3 = st.columns(3)
                 col1.metric("Alert Severity", alert_severity)
                 col2.metric("Score", rounded_score)
-                accuracy_help_md = '''0 - 75% = Bad\n75 - 90% = Average\n90 - 97% = Good\n97 - 100% = Best'''.strip()
+                accuracy_help_md = '''0 - 75% = Bad\n75 - 90% = Average\n90 - 97% = Good\n97 - 100% = Best'''
                 col3.metric("Accuracy", f"{accuracy_percentage}%", help=accuracy_help_md)
                 col3.markdown(segmented_progress_bar(accuracy_percentage), unsafe_allow_html=True)
             else:
