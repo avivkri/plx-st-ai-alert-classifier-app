@@ -31,8 +31,8 @@ def segmented_progress_bar(current_value):
     
     <style>
         .gauge {{
-            width: 300px; /* Adjust the width of the gauge */
-          height: 20px; /* Adjust the height of the gauge */
+          width: 200px; /* Adjust the width of the gauge */
+          height: 10px; /* Adjust the height of the gauge */
           background: 
             linear-gradient(to right, #FF6B6B 0% 75%, #FFD700 75% 90%, #87CEEB 90% 97%, #98FB98 97% 100%);
           position: relative;
