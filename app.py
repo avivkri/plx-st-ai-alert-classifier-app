@@ -15,13 +15,14 @@ def main():
     st.title("Model Inference App")
 
     # Input text area
-    input_data = st.text_area("Enter Input Data", value="{\"inputs\": \"[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.\"}")
+    input_data = st.text_area("Enter Input Data", value="[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.")
 
     # Submit button
     if st.button("Predict"):
         try:
             # Define the endpoint URL
-            local_endpoint_url = 'http://ai-alert-classifier-inference-service.polyaxon:8080/invocations'
+            local_endpoint_url = 'http://localhost:8080/invocations'
+            # local_endpoint_url = 'http://ai-alert-classifier-inference-service.polyaxon:8080/invocations'
 
             # Define headers
             headers = {
@@ -29,16 +30,17 @@ def main():
                 'Accept': 'application/json'
             }
 
+            input_json = {"inputs": input_data}
+            input_json_str = json.dumps(input_json)
+
             # Make a POST request to the local endpoint
-            response = requests.post(local_endpoint_url, data=input_data, headers=headers)
+            response = requests.post(local_endpoint_url, data=input_json_str, headers=headers)
 
             if response.status_code == 200:
                 predicted_label, score = parse_response(response.text)
                 st.subheader("Inference")
-                st.write(f"Input text: {input_data}")
-                st.write("Model prediction")
-                st.write(f"Label: {predicted_label}")
-                st.write(f"Score: {score}")
+                st.metric("Label", predicted_label)
+                st.metric("Score", score)
             else:
                 st.error(f"Request failed with status code {response.status_code}")
 
