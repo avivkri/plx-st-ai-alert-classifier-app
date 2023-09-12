@@ -29,25 +29,27 @@ def segmented_progress_bar(current_value):
       <div class="needle"></div>
     </div>
     
-    .gauge {{
-        width: 300px; /* Adjust the width of the gauge */
-      height: 20px; /* Adjust the height of the gauge */
-      background: 
-        linear-gradient(to right, #FF6B6B 0% 75%, #FFD700 75% 90%, #87CEEB 90% 97%, #98FB98 97% 100%);
-      position: relative;
-    }}
-    
-    .needle {{
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 20px solid black; /* Color of the arrow needle is black */
-      position: absolute;
-      top: -20px; /* Adjust the top position to position it at the top */
-      left: {percentage}%;
-      transform: translateX(-50%);
-    }}
+    <style>
+        .gauge {{
+            width: 300px; /* Adjust the width of the gauge */
+          height: 20px; /* Adjust the height of the gauge */
+          background: 
+            linear-gradient(to right, #FF6B6B 0% 75%, #FFD700 75% 90%, #87CEEB 90% 97%, #98FB98 97% 100%);
+          position: relative;
+        }}
+        
+        .needle {{
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 20px solid black; /* Color of the arrow needle is black */
+          position: absolute;
+          top: -20px; /* Adjust the top position to position it at the top */
+          left: {percentage}%;
+          transform: translateX(-50%);
+        }}
+    </style>
 
     """
 
