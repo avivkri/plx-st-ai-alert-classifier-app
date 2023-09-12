@@ -20,13 +20,57 @@ def convert_to_alert_severity(predicted_label):
     }
     return label_to_severity_map.get(predicted_label, 'Unknown')
 
+def segmented_progress_bar(current_value):
+    ranges = [
+        (0, 25, '#FF3E3E'),
+        (25, 50, '#FFD700'),
+        (50, 75, '#4C87FF'),
+        (75, 100, '#43D315')
+    ]
+
+    total = ranges[-1][1]
+    percentage = current_value  # Use accuracy percentage as current value
+
+    # Create HTML and CSS for the segmented progress bar
+    html_code = f"""
+    <style>
+    .gauge {{
+        width: 300px; /* Adjust the width of the gauge */
+        height: 20px; /* Adjust the height of the gauge */
+        background:
+            linear-gradient(to right, {ranges[0][2]} {ranges[0][0]}% {ranges[0][1]}%, 
+                                    {ranges[1][2]} {ranges[1][0]}% {ranges[1][1]}%, 
+                                    {ranges[2][2]} {ranges[2][0]}% {ranges[2][1]}%, 
+                                    {ranges[3][2]} {ranges[3][0]}% {ranges[3][1]}%);
+        position: relative;
+        border: 1px solid #666; /* Add a 1px solid darker gray border */
+    }}
+
+    .gauge::before {{
+        content: "";
+        width: {percentage}%;
+        height: 100%;
+        background-color: #0074bf;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }}
+    </style>
+
+    <div class="gauge">
+      <div class="needle"></div>
+    </div>
+    """
+
+    return html_code
+
 # Streamlit app
 def main():
     st.title("AI Alert Classifier - Model Inference")
 
     st.subheader("Input")
     # Input text area
-    input_data = st.text_area("Enter Input Data", value="[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.")
+    input_data = st.text_area("Enter input data", value="[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.")
 
     # Submit button
     if st.button("Predict"):
@@ -50,11 +94,16 @@ def main():
             if response.status_code == 200:
                 predicted_label, score = parse_response(response.text)
                 alert_severity = convert_to_alert_severity(predicted_label)
+                rounded_score = round(score, 5)
+                accuracy_percentage = round(score * 100, 2)
+
                 st.subheader("Inference")
                 col1, col2, col3 = st.columns(3)
                 col1.metric("Alert Severity", alert_severity)
-                col2.metric("Score", round(score, 5))
-                col3.metric("Accuracy", f"{round(score * 100, 2)}%")
+                col2.metric("Score", rounded_score)
+                col3.metric("Accuracy", f"{accuracy_percentage}%")
+
+                st.markdown(segmented_progress_bar(accuracy_percentage), unsafe_allow_html=True)
             else:
                 st.error(f"Request failed with status code {response.status_code}")
 
