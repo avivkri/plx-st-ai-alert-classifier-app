@@ -1,0 +1,12 @@
+version: 1.1
+kind: component
+name: plx-st-ai-alert-classifier-app
+tags: [polyaxon, streamlit, ai, alert, text-classification]
+run:
+  kind: service
+  ports: [8501]
+  rewritePath: true
+  container:
+    image: avivkri/plx-st-ai-alert-classifier-app:0.1.0
+    imagePullPolicy: Always
+    command: [streamlit, run, app.py]
