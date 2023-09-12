@@ -21,45 +21,34 @@ def convert_to_alert_severity(predicted_label):
     return label_to_severity_map.get(predicted_label, 'Unknown')
 
 def segmented_progress_bar(current_value):
-    ranges = [
-        (0, 25, '#FF3E3E'),
-        (25, 50, '#FFD700'),
-        (50, 75, '#4C87FF'),
-        (75, 100, '#43D315')
-    ]
-
-    total = ranges[-1][1]
     percentage = current_value  # Use accuracy percentage as current value
 
     # Create HTML and CSS for the segmented progress bar
     html_code = f"""
-    <style>
-    .gauge {{
-        width: 300px; /* Adjust the width of the gauge */
-        height: 20px; /* Adjust the height of the gauge */
-        background:
-            linear-gradient(to right, {ranges[0][2]} {ranges[0][0]}% {ranges[0][1]}%, 
-                                    {ranges[1][2]} {ranges[1][0]}% {ranges[1][1]}%, 
-                                    {ranges[2][2]} {ranges[2][0]}% {ranges[2][1]}%, 
-                                    {ranges[3][2]} {ranges[3][0]}% {ranges[3][1]}%);
-        position: relative;
-        border: 1px solid #666; /* Add a 1px solid darker gray border */
-    }}
-
-    .gauge::before {{
-        content: "";
-        width: {percentage}%;
-        height: 100%;
-        background-color: #0074bf;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }}
-    </style>
-
     <div class="gauge">
       <div class="needle"></div>
     </div>
+    
+    .gauge {{
+        width: 300px; /* Adjust the width of the gauge */
+      height: 20px; /* Adjust the height of the gauge */
+      background: 
+        linear-gradient(to right, #FF6B6B 0% 75%, #FFD700 75% 90%, #87CEEB 90% 97%, #98FB98 97% 100%);
+      position: relative;
+    }}
+    
+    .needle {{
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 20px solid black; /* Color of the arrow needle is black */
+      position: absolute;
+      top: -20px; /* Adjust the top position to position it at the top */
+      left: {percentage}%;
+      transform: translateX(-50%);
+    }}
+
     """
 
     return html_code
