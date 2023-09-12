@@ -51,10 +51,9 @@ def main():
                 predicted_label, score = parse_response(response.text)
                 alert_severity = convert_to_alert_severity(predicted_label)
                 st.subheader("Inference")
-                col1, col2, col3 = st.columns(3)
-                col1.metric("Label", predicted_label)
-                col2.metric("Alert Severity", alert_severity)
-                col3.metric("Score", round(score, 5))
+                col1, col2 = st.columns(2)
+                col1.metric("Alert Severity", alert_severity)
+                col2.metric("Score", round(score, 5))
             else:
                 st.error(f"Request failed with status code {response.status_code}")
 
