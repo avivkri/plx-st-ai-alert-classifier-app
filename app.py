@@ -94,7 +94,13 @@ def main():
                 col1, col2, col3 = st.columns(3)
                 col1.metric("Alert Severity", alert_severity)
                 col2.metric("Score", rounded_score)
-                col3.metric("Accuracy", f"{accuracy_percentage}%")
+                accuracy_help_md = '''
+                0 - 75% = Bad
+                75 - 90% = Average
+                90 - 97% = Good
+                97 - 100% = Best
+                '''.strip()
+                col3.metric("Accuracy", f"{accuracy_percentage}%", help=accuracy_help_md)
                 col3.markdown(segmented_progress_bar(accuracy_percentage), unsafe_allow_html=True)
             else:
                 st.error(f"Request failed with status code {response.status_code}")
