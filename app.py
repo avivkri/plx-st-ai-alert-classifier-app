@@ -36,9 +36,11 @@ def segmented_progress_bar(current_value):
           background: 
             linear-gradient(to right, #FF6B6B 0% 75%, #FFD700 75% 90%, #87CEEB 90% 97%, #98FB98 97% 100%);
           position: relative;
+          border: 1px solid #666; /* Add a 1px solid darker gray border */
         }}
         
-        .needle {{
+        .gauge::before {{
+          content: "";
           width: 0;
           height: 0;
           border-left: 4px solid transparent;
