@@ -21,7 +21,7 @@ def main():
     if st.button("Predict"):
         try:
             # Define the endpoint URL
-            local_endpoint_url = 'http://localhost:8080/invocations'
+            local_endpoint_url = 'http://ai-alert-classifier-inference-service.polyaxon:8080/invocations'
 
             # Define headers
             headers = {
