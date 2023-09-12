@@ -34,7 +34,7 @@ def segmented_progress_bar(current_value):
           width: 200px; /* Adjust the width of the gauge */
           height: 10px; /* Adjust the height of the gauge */
           background: 
-            linear-gradient(to right, #FF6B6B 0% 75%, #FFD700 75% 90%, #87CEEB 90% 97%, #98FB98 97% 100%);
+            linear-gradient(to right, #FF3E3E 0% 75%, #FFD700 75% 90%, #4C87FF 90% 97%, #43D315 97% 100%);
           position: relative;
           border: 1px solid #666; /* Add a 1px solid darker gray border */
         }}
