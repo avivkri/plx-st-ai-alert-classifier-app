@@ -15,7 +15,7 @@ def main():
     st.title("Model Inference App")
 
     # Input text area
-    input_data = st.text_area("Enter Input Data", default_value="\"inputs\": \"[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.\"")
+    input_data = st.text_area("Enter Input Data", value="\"inputs\": \"[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.\"")
 
     # Submit button
     if st.button("Predict"):
