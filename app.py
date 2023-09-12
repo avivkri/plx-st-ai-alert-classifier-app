@@ -48,11 +48,12 @@ def main():
 
             if response.status_code == 200:
                 predicted_label, score = parse_response(response.text)
-                st.subheader("Inference")
-                st.metric("Label", predicted_label)
                 alert_severity = convert_to_alert_severity(predicted_label)
-                st.metric("Alert Severity", alert_severity)
-                st.metric("Score", score)
+                st.subheader("Inference")
+                col1, col2, col3 = st.columns(3)
+                col1.metric("Label", predicted_label)
+                col2.metric("Alert Severity", alert_severity)
+                col3.metric("Score", score)
             else:
                 st.error(f"Request failed with status code {response.status_code}")
 
