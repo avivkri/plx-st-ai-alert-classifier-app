@@ -41,11 +41,11 @@ def segmented_progress_bar(current_value):
         .needle {{
           width: 0;
           height: 0;
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-top: 20px solid black; /* Color of the arrow needle is black */
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-top: 8px solid black; /* Color of the arrow needle is black */
           position: absolute;
-          top: -20px; /* Adjust the top position to position it at the top */
+          top: -8px; /* Adjust the top position to position it at the top */
           left: {percentage}%;
           transform: translateX(-50%);
         }}
