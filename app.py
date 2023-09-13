@@ -20,23 +20,22 @@ def convert_to_alert_severity(predicted_label):
     }
     return label_to_severity_map.get(predicted_label, 'Unknown')
 
-def segmented_progress_bar(current_value):
-    percentage = current_value  # Use accuracy percentage as current value
 
-    # Create HTML and CSS for the segmented progress bar
+def segmented_progress_bar(current_value):
+    percentage = current_value
+
     html_code = f"""
     <div class="gauge">
-      <div class="needle"></div>
     </div>
     
     <style>
         .gauge {{
-          width: 200px; /* Adjust the width of the gauge */
-          height: 10px; /* Adjust the height of the gauge */
-          background: 
+          width: 200px; 
+          height: 10px;
+          background:
             linear-gradient(to right, #FF3E3E 0% 75%, #FFD700 75% 90%, #4C87FF 90% 97%, #43D315 97% 100%);
           position: relative;
-          border: 1px solid #666; /* Add a 1px solid darker gray border */
+          border: 1px solid #666;
         }}
         
         .gauge::before {{
@@ -45,19 +44,18 @@ def segmented_progress_bar(current_value):
           height: 0;
           border-left: 4px solid transparent;
           border-right: 4px solid transparent;
-          border-top: 8px solid black; /* Color of the arrow needle is black */
+          border-top: 8px solid black;
           position: absolute;
-          top: -8px; /* Adjust the top position to position it at the top */
+          top: -8px;
           left: {percentage}%;
           transform: translateX(-50%);
         }}
     </style>
-
     """
 
     return html_code
 
-# Streamlit app
+
 def main():
     st.title("AI Alert Classifier - Model Inference")
 
@@ -68,11 +66,9 @@ def main():
     # Submit button
     if st.button("Predict"):
         try:
-            # Define the endpoint URL
             local_endpoint_url = 'http://localhost:8080/invocations'
             # local_endpoint_url = 'http://ai-alert-classifier-inference-service.polyaxon:8080/invocations'
 
-            # Define headers
             headers = {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -81,7 +77,6 @@ def main():
             input_json = {"inputs": input_data}
             input_json_str = json.dumps(input_json)
 
-            # Make a POST request to the local endpoint
             response = requests.post(local_endpoint_url, data=input_json_str, headers=headers)
 
             if response.status_code == 200:
@@ -95,7 +90,9 @@ def main():
                 col1.metric("Alert Severity", alert_severity)
                 col2.metric("Score", rounded_score)
                 accuracy_help_md = '''0 - 75% = Bad
-75 - 90% = Average\n90 - 97% = Good\n97 - 100% = Best'''
+75 - 90% = Average
+90 - 97% = Good
+97 - 100% = Best'''
                 col3.metric("Accuracy", f"{accuracy_percentage}%", help=accuracy_help_md)
                 col3.markdown(segmented_progress_bar(accuracy_percentage), unsafe_allow_html=True)
             else:
