@@ -57,7 +57,7 @@ def segmented_progress_bar(current_value):
 
 
 def main():
-    st.title("AI Alert Classifier - Model Inference")
+    st.title("🔔 AI Alert Classifier - Model Inference")
 
     st.subheader("Input")
     # Input text area
