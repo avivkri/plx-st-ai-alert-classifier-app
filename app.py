@@ -68,8 +68,8 @@ def main():
     # Submit button
     if st.button("Predict"):
         try:
-            local_endpoint_url = 'http://localhost:8080/invocations'
-            # local_endpoint_url = 'http://ai-alert-classifier-inference-service.polyaxon:8080/invocations'
+            #local_endpoint_url = 'http://localhost:8080/invocations'
+            local_endpoint_url = 'http://ai-alert-classifier-inference-service.polyaxon:8080/invocations'
 
             headers = {
                 'Content-Type': 'application/json',
