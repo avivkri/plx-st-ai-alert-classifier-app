@@ -106,12 +106,14 @@ def main():
             response_time = response.elapsed.total_seconds()
 
             response_stats = {
-                "Field": ["Status code", "Response text", "Content type", "Content length", "Response time (s)"],
-                "Value": [status_code, response_text, content_type, content_length, response_time]
+                "Field": ["Status code", "Content type", "Content length", "Response time (s)"],
+                "Value": [status_code, content_type, content_length, response_time]
             }
 
             st.subheader("Response statistics")
             st.table(response_stats)
+            st.caption("Response data")
+            st.json(response_text)
         except Exception as e:
             st.error(f"An error occurred: {e}")
             st.exception(e)
