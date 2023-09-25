@@ -85,18 +85,18 @@ def main():
                 predicted_label, score = parse_response(response.text)
                 alert_severity = convert_to_alert_severity(predicted_label)
                 rounded_score = round(score, 5)
-                accuracy_percentage = round(score * 100, 2)
+                confidence_percentage = round(score * 100, 2)
 
                 st.subheader("Inference")
                 col1, col2, col3 = st.columns(3)
                 col1.metric("Alert Severity", alert_severity)
                 col2.metric("Score", rounded_score)
-                accuracy_help_md = '''0 - 75% = Bad\n
+                confidence_help_md = '''0 - 75% = Bad\n
 75 - 90% = Average\n
 90 - 97% = Good\n
 97 - 100% = Best'''
-                col3.metric("Accuracy", f"{accuracy_percentage}%", help=accuracy_help_md)
-                col3.markdown(segmented_progress_bar(accuracy_percentage), unsafe_allow_html=True)
+                col3.metric("Confidence", f"{confidence_percentage}%", help=confidence_help_md)
+                col3.markdown(segmented_progress_bar(confidence_percentage), unsafe_allow_html=True)
             else:
                 st.error(f"Request failed with status code {response.status_code}")
 
