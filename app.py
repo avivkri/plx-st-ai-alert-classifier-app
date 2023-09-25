@@ -107,7 +107,7 @@ def main():
 
             response_stats = {
                 "Field": ["Status code", "Response text", "Content type", "Content length", "Response time (s)"],
-                "Value": [status_code, st.json(response_text), content_type, content_length, response_time]
+                "Value": [status_code, response_text, content_type, content_length, response_time]
             }
 
             st.subheader("Response statistics")
