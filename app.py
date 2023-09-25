@@ -112,10 +112,8 @@ def main():
                 "Value": [status_code, content_type, content_length, response_time]
             }
 
-            df = pd.DataFrame.from_dict(response_stats)
-
             st.subheader("Response statistics")
-            #st.table(response_stats)
+            df = pd.DataFrame.from_dict(response_stats)
             st.dataframe(df, hide_index=True)
             st.caption("Response data")
             st.json(response_text, expanded=False)
