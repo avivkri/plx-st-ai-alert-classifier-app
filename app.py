@@ -106,14 +106,12 @@ def main():
             response_time = response.elapsed.total_seconds()
 
             response_stats = {
-                "Status Code": status_code,
-                "Content Type": content_type,
-                "Content Length": content_length,
-                "Response Text": response_text,
-                "Response Time (s)": response_time
+                "Metric": ["Status Code", "Content Type", "Content Length", "Response Time (s)"],
+                "Value": [status_code, content_type, content_length, response_time],
+                "Response Text": [response_text, "", "", ""]
             }
 
-            st.text("Response statistics:")
+            st.subheader("Response statistics")
             st.table(response_stats)
         except Exception as e:
             st.error(f"An error occurred: {e}")
