@@ -106,9 +106,8 @@ def main():
             response_time = response.elapsed.total_seconds()
 
             response_stats = {
-                "Metric": ["Status Code", "Content Type", "Content Length", "Response Time (s)"],
-                "Value": [status_code, content_type, content_length, response_time],
-                "Response Text": [response_text, "", "", ""]
+                "Field": ["Status code", "Response text", "Content type", "Content length", "Response time (s)"],
+                "Value": [status_code, response_text, content_type, content_length, response_time]
             }
 
             st.subheader("Response statistics")
