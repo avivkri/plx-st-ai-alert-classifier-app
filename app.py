@@ -113,7 +113,7 @@ def main():
             st.subheader("Response statistics")
             st.table(response_stats)
             st.caption("Response data")
-            st.json(response_text)
+            st.json(response_text, expanded=False)
         except Exception as e:
             st.error(f"An error occurred: {e}")
             st.exception(e)
