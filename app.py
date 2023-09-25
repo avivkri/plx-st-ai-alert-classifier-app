@@ -112,8 +112,7 @@ def main():
                 "Value": [status_code, content_type, content_length, response_time]
             }
 
-            df = pd.DataFrame.from_dict(response_stats, orient='index', columns=['Value'])
-            df.index.name = 'Field'
+            df = pd.DataFrame.from_dict(response_stats)
 
             st.subheader("Response statistics")
             #st.table(response_stats)
