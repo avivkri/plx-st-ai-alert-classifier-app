@@ -98,6 +98,23 @@ def main():
             else:
                 st.error(f"Request failed with status code {response.status_code}")
 
+            status_code = response.status_code
+            headers = response.headers
+            content_type = headers.get('Content-Type', 'N/A')
+            content_length = headers.get('Content-Length', 'N/A')
+            response_text = response.text
+            response_time = response.elapsed.total_seconds()
+
+            response_stats = {
+                "Status Code": status_code,
+                "Content Type": content_type,
+                "Content Length": content_length,
+                "Response Text": response_text,
+                "Response Time (s)": response_time
+            }
+
+            st.text("Response statistics:")
+            st.table(response_stats)
         except Exception as e:
             st.error(f"An error occurred: {e}")
             st.exception(e)
