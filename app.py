@@ -114,20 +114,19 @@ def main():
 
             st.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-            st.dataframe(df, hide_index=True)
+            #st.dataframe(df, hide_index=True)
+
+            st.markdown('<div id="unique_dataframe_container"></div>', unsafe_allow_html=True)
+            df_html = df.to_html(classes="stDataFrame")  # Convert dataframe to HTML with Streamlit's class.
+            st.markdown(f'<div id="unique_dataframe_content">{df_html}</div>', unsafe_allow_html=True)
             st.markdown("""
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script>
-                setTimeout(function() {
-                    $("div.css-9aoz2h.e1vs0wn30").attr("id", "uniqueDataFrameId");
-                }, 1000);  // Adjust the timeout if needed
-            </script>
             <style>
-                #uniqueDataFrameId button[data-testid="StyledFullScreenButton"] {
-                    display: none;
+                #unique_dataframe_container div[data-testid='element-container'] button[data-testid='StyledFullScreenButton'] {
+                    display: none !important;
                 }
             </style>
             """, unsafe_allow_html=True)
+            
             st.dataframe(df, hide_index=True)
             st.caption("Response data")
             st.json(response_text, expanded=False)
