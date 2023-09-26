@@ -116,12 +116,13 @@ def main():
             df = pd.DataFrame.from_dict(response_stats)
             st.dataframe(df, hide_index=True)
             st.markdown("""
-                    <style>
-                        [data-testid="StyledFullScreenButton"] { 
-                            display: none !important; 
-                        }
-                    </style>
-                """, unsafe_allow_html=True)
+            <style>
+                div.css-9aoz2h.e1vs0wn30 > button[data-testid="StyledFullScreenButton"] {
+                    display: none;
+                }
+            </style>
+            """, unsafe_allow_html=True)
+            st.dataframe(df, hide_index=True)
             st.caption("Response data")
             st.json(response_text, expanded=False)
         except Exception as e:
