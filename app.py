@@ -116,13 +116,13 @@ def main():
             df = pd.DataFrame.from_dict(response_stats)
             st.markdown("""
                     <style>
-                        [data-testid="no_fullscreen_df"].element-container .stDataFrame-expander > svg { 
+                        .element-container:not(:last-child) .element-container .stDataFrame-expander > svg { 
                             display: none; 
                         }
                     </style>
                 """, unsafe_allow_html=True)
 
-            st.dataframe(df, hide_index=True, key="no_fullscreen_df")
+            st.dataframe(df, hide_index=True)
             st.caption("Response data")
             st.json(response_text, expanded=False)
         except Exception as e:
