@@ -128,7 +128,7 @@ def main():
                         // Set a unique ID
                         dfContainer.id = "unique_dataframe_id";
                     }
-                }, 0);
+                }, 5000);
             </script>
             <style>
                 #unique_dataframe_id button[data-testid='StyledFullScreenButton'] {
