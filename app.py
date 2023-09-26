@@ -116,7 +116,7 @@ def main():
             col4.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
             col4.dataframe(df, hide_index=True)
-            col5.caption("Response data")
+            col5.subheader("Response data")
             col5.json(response_text, expanded=False)
         except Exception as e:
             st.error(f"An error occurred: {e}")
