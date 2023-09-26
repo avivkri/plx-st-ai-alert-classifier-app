@@ -113,11 +113,11 @@ def main():
             }
 
             col4, col5 = st.columns(2)
-            col4.subheader("Response statistics")
+            col4.subheader("Response data")
+            col4.json(response_text, expanded=False)
+            col5.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-            col4.dataframe(df, hide_index=True)
-            col5.subheader("Response data")
-            col5.json(response_text, expanded=False)
+            col5.dataframe(df, hide_index=True)
         except Exception as e:
             st.error(f"An error occurred: {e}")
             st.exception(e)
