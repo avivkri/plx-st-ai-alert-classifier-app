@@ -112,11 +112,12 @@ def main():
                 "Value": [str(status_code), str(content_type), str(content_length), str(response_time)]
             }
 
-            st.subheader("Response statistics")
+            col4, col5 = st.columns(2)
+            col4.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-            st.dataframe(df, hide_index=True)
-            st.caption("Response data")
-            st.json(response_text, expanded=False)
+            col4.dataframe(df, hide_index=True)
+            col5.caption("Response data")
+            col5.json(response_text, expanded=False)
         except Exception as e:
             st.error(f"An error occurred: {e}")
             st.exception(e)
