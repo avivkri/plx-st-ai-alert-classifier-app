@@ -60,10 +60,10 @@ def segmented_progress_bar(current_value):
 
 
 def main():
+    add_logo("https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
     st.set_page_config(page_title="AI Alert Classifier - Model Inference",
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
     st.title(":violet[AI Alert Classifier] - Model Inference")
-    add_logo("https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
 
     st.subheader("Input")
     # Input text area
