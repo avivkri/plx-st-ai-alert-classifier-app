@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_extras.app_logo import add_logo
 import pandas as pd
 import requests
 import json
@@ -63,7 +62,6 @@ def main():
     st.set_page_config(page_title="AI Alert Classifier - Model Inference",
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
     st.title(":violet[AI Alert Classifier] - Model Inference")
-    add_logo("https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
 
     st.subheader("Input")
     # Input text area
