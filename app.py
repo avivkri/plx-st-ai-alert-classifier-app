@@ -114,24 +114,15 @@ def main():
 
             st.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-            placeholder = st.empty()
             st.markdown("""
-                                <script>
-                                    setTimeout(function(){
-                                        var elements = document.getElementsByClassName('element-container');
-                                        var lastElement = elements[elements.length - 1];
-                                        lastElement.setAttribute('id', 'custom-dataframe');
-                                    }, 100);
-                                </script>
-                            """, unsafe_allow_html=True)
-            st.markdown("""
-                                <style>
-                                    #custom-dataframe .fullScreenFrame { 
-                                        display: none; 
-                                    }
-                                </style>
-                            """, unsafe_allow_html=True)
-            placeholder.dataframe(df, hide_index=True)
+                    <style>
+                        [data-testid="no_fullscreen_df"].element-container .stDataFrame-expander > svg { 
+                            display: none; 
+                        }
+                    </style>
+                """, unsafe_allow_html=True)
+
+            st.dataframe(df, hide_index=True, key="no_fullscreen_df")
             st.caption("Response data")
             st.json(response_text, expanded=False)
         except Exception as e:
