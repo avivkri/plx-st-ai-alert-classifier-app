@@ -116,8 +116,14 @@ def main():
             df = pd.DataFrame.from_dict(response_stats)
             st.dataframe(df, hide_index=True)
             st.markdown("""
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                setTimeout(function() {
+                    $("div.css-9aoz2h.e1vs0wn30").attr("id", "uniqueDataFrameId");
+                }, 1000);  // Adjust the timeout if needed
+            </script>
             <style>
-                div.css-9aoz2h.e1vs0wn30 > button[data-testid="StyledFullScreenButton"] {
+                #uniqueDataFrameId button[data-testid="StyledFullScreenButton"] {
                     display: none;
                 }
             </style>
