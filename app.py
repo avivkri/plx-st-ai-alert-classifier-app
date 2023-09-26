@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 import json
 
+
 def parse_response(query_response):
     response = json.loads(query_response)
     predicted_label, score = (
