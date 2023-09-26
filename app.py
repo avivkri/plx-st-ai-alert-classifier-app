@@ -123,7 +123,7 @@ def main():
                 // Using setTimeout to wait until the DOM is rendered
                 setTimeout(() => {
                     // Find the DataFrame container closest to this script tag
-                    let dfContainer = document.currentScript.closest("[data-testid='element-container']");
+                    let dfContainer = document.currentScript.closest("[data-testid='StyledFullScreenButton']");
                     if (dfContainer) {
                         // Set a unique ID
                         dfContainer.id = "unique_dataframe_id";
