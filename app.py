@@ -66,7 +66,7 @@ def main():
     html_string = f"""
     <div style="display:flex;align-items:center;">
         <img src="{logo_url}" style="width:50px;height:50px;margin-right:10px;">
-        <h1 style="color:#f63366;">:violet[AI Alert Classifier] - Model Inference</h1>
+        <h1 style="color:#f63366;">AI Alert Classifier - Model Inference</h1>
     </div>
     """
     st.markdown(html_string, unsafe_allow_html=True)
