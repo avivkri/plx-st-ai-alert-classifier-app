@@ -109,7 +109,7 @@ def main():
 
             response_stats = {
                 "Field": ["Status code", "Content type", "Content length", "Response time (s)"],
-                "Value": [status_code, content_type, content_length, response_time]
+                "Value": [str(status_code), str(content_type), str(content_length), str(response_time)]
             }
 
             st.subheader("Response statistics")
