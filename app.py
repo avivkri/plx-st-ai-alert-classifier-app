@@ -114,18 +114,18 @@ def main():
 
             st.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-            #st.dataframe(df, hide_index=True)
 
-            st.markdown('<div id="unique_dataframe_container"></div>', unsafe_allow_html=True)
-            df_html = df.to_html(classes="stDataFrame")  # Convert dataframe to HTML with Streamlit's class.
-            st.markdown(f'<div id="unique_dataframe_content">{df_html}</div>', unsafe_allow_html=True)
+
+            st.markdown('<div id="unique_reference"></div>', unsafe_allow_html=True)
+            st.dataframe(df, hide_index=True)
             st.markdown("""
             <style>
-                #unique_dataframe_container div[data-testid='element-container'] button[data-testid='StyledFullScreenButton'] {
+                #unique_reference + [data-testid='element-container'] button[data-testid='StyledFullScreenButton'] {
                     display: none !important;
                 }
             </style>
             """, unsafe_allow_html=True)
+
             
             st.dataframe(df, hide_index=True)
             st.caption("Response data")
