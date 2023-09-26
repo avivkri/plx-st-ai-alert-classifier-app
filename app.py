@@ -119,8 +119,19 @@ def main():
             st.markdown('<div id="unique_reference"></div>', unsafe_allow_html=True)
             st.dataframe(df, hide_index=True)
             st.markdown("""
+            <script>
+                // Using setTimeout to wait until the DOM is rendered
+                setTimeout(() => {
+                    // Find the DataFrame container closest to this script tag
+                    let dfContainer = document.currentScript.closest("[data-testid='element-container']");
+                    if (dfContainer) {
+                        // Set a unique ID
+                        dfContainer.id = "unique_dataframe_id";
+                    }
+                }, 0);
+            </script>
             <style>
-                #unique_reference ~ [data-testid='element-container'] button[data-testid='StyledFullScreenButton'] {
+                #unique_dataframe_id button[data-testid='StyledFullScreenButton'] {
                     display: none !important;
                 }
             </style>
