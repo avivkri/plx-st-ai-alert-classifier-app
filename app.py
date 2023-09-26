@@ -62,6 +62,14 @@ def main():
     st.set_page_config(page_title="AI Alert Classifier - Model Inference",
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
     st.title(":violet[AI Alert Classifier] - Model Inference")
+    logo_url = "https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png"
+    html_string = f"""
+    <div style="display:flex;align-items:center;">
+        <img src="{logo_url}" style="width:50px;height:50px;margin-right:10px;">
+        <h1 style="color:#f63366;">:violet[AI Alert Classifier] - Model Inference</h1>
+    </div>
+    """
+    st.markdown(html_string, unsafe_allow_html=True)
 
     st.subheader("Input")
     # Input text area
