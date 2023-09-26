@@ -114,7 +114,24 @@ def main():
 
             st.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-            st.dataframe(df, hide_index=True)
+            placeholder = st.empty()
+            st.markdown("""
+                                <script>
+                                    setTimeout(function(){
+                                        var elements = document.getElementsByClassName('element-container');
+                                        var lastElement = elements[elements.length - 1];
+                                        lastElement.setAttribute('id', 'custom-dataframe');
+                                    }, 100);
+                                </script>
+                            """, unsafe_allow_html=True)
+            st.markdown("""
+                                <style>
+                                    #custom-dataframe .fullScreenFrame { 
+                                        display: none; 
+                                    }
+                                </style>
+                            """, unsafe_allow_html=True)
+            placeholder.dataframe(df, hide_index=True)
             st.caption("Response data")
             st.json(response_text, expanded=False)
         except Exception as e:
