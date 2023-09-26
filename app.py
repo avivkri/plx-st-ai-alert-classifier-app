@@ -120,13 +120,13 @@ def main():
             st.dataframe(df, hide_index=True)
             st.markdown("""
             <style>
-                #unique_reference + [data-testid='element-container'] button[data-testid='StyledFullScreenButton'] {
+                #unique_reference ~ [data-testid='element-container'] button[data-testid='StyledFullScreenButton'] {
                     display: none !important;
                 }
             </style>
             """, unsafe_allow_html=True)
 
-            
+
             st.dataframe(df, hide_index=True)
             st.caption("Response data")
             st.json(response_text, expanded=False)
