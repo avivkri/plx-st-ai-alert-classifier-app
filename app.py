@@ -3,7 +3,6 @@ import pandas as pd
 import requests
 import json
 
-
 def parse_response(query_response):
     response = json.loads(query_response)
     predicted_label, score = (
@@ -59,7 +58,7 @@ def segmented_progress_bar(current_value):
 
 
 def main():
-    st.set_page_config(page_title="AI Alert Classifier - Model Inference")
+    st.set_page_config(page_title="AI Alert Classifier - Model Inference", page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert.png")
     st.title("AI Alert Classifier - Model Inference")
 
     st.subheader("Input")
