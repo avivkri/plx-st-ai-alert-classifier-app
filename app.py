@@ -59,6 +59,7 @@ def segmented_progress_bar(current_value):
 
 
 def main():
+    st.set_page_config(page_title="AI Alert Classifier - Model Inference")
     st.title("AI Alert Classifier - Model Inference")
 
     st.subheader("Input")
