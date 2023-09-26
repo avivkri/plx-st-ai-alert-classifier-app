@@ -114,30 +114,6 @@ def main():
 
             st.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-
-
-            st.markdown('<div id="unique_reference"></div>', unsafe_allow_html=True)
-            st.dataframe(df, hide_index=True)
-            st.markdown("""
-            <script>
-                // Using setTimeout to wait until the DOM is rendered
-                setTimeout(() => {
-                    // Find the DataFrame container closest to this script tag
-                    let dfContainer = document.currentScript.closest("[data-testid='StyledFullScreenButton']");
-                    if (dfContainer) {
-                        // Set a unique ID
-                        dfContainer.id = "unique_dataframe_id";
-                    }
-                }, 5000);
-            </script>
-            <style>
-                #unique_dataframe_id button[data-testid='StyledFullScreenButton'] {
-                    display: none !important;
-                }
-            </style>
-            """, unsafe_allow_html=True)
-
-
             st.dataframe(df, hide_index=True)
             st.caption("Response data")
             st.json(response_text, expanded=False)
