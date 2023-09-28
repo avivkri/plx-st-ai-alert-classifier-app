@@ -65,8 +65,20 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     # Assuming accuracy and other metrics are computed similarly as previously shown
     data_size = len(true_labels)
     accuracy = np.sum(true_labels == predicted_labels) / data_size
+    prec_weighted = metrics.precision_score(true_labels, predicted_labels, average='weighted')
+    recall_weighted = metrics.recall_score(true_labels, predicted_labels, average='weighted')
+    f1_weighted = metrics.f1_score(true_labels, predicted_labels, average='weighted')
+    roc_auc_weighted = metrics.roc_auc_score(true_labels, predicted_scores, multi_class='ovr', average='weighted')
 
-    # ... [Other metrics computations go here]
+    prec_micro = metrics.precision_score(true_labels, predicted_labels, average='micro')
+    recall_micro = metrics.recall_score(true_labels, predicted_labels, average='micro')
+    f1_micro = metrics.f1_score(true_labels, predicted_labels, average='micro')
+    roc_auc_micro = metrics.roc_auc_score(true_labels, predicted_scores, multi_class='ovr', average='micro')
+
+    prec_macro = metrics.precision_score(true_labels, predicted_labels, average='macro')
+    recall_macro = metrics.recall_score(true_labels, predicted_labels, average='macro')
+    f1_macro = metrics.f1_score(true_labels, predicted_labels, average='macro')
+    roc_auc_macro = metrics.roc_auc_score(true_labels, predicted_scores, multi_class='ovr', average='macro')
 
     # Accuracy plot
     plt.figure(figsize=(10, 6))
