@@ -80,50 +80,57 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     f1_macro = metrics.f1_score(true_labels, predicted_labels, average='macro')
     roc_auc_macro = metrics.roc_auc_score(true_labels, predicted_scores, multi_class='ovr', average='macro')
 
-    # Grouped Bar Plot for other metrics
-    df = pd.DataFrame({
-        'Metric': ['accuracy', 'precision', 'recall', 'f1', 'roc_auc'],
-        'Weighted': [accuracy, prec_weighted, recall_weighted, f1_weighted, roc_auc_weighted],
-        'Micro': [accuracy, prec_micro, recall_micro, f1_micro, roc_auc_micro],
-        'Macro': [accuracy, prec_macro, recall_macro, f1_macro, roc_auc_macro]
-    })
-
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        # [Accuracy plot code]
-        plt.figure(figsize=(5, 4))
-        sns.barplot(x=["accuracy"], y=[accuracy], palette='pastel')
-        plt.ylim(0, 1.1)
-        plt.title('Accuracy')
-        for index, value in enumerate([accuracy]):
-            plt.text(index, value + 0.02, '{:.2f}'.format(value), ha='center')
+        # Accuracy plot
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x=['Accuracy'], y=[accuracy], palette='pastel')
+        plt.text(0, accuracy - 0.05, f"{accuracy:.2f}", ha='center')
         st.pyplot(plt.gcf())
-        plt.clf()
+
+        # Grouped Bar Plot for other metrics
+        df = pd.DataFrame({
+            'Metric': ['accuracy', 'precision', 'recall', 'f1', 'roc_auc'],
+            'Weighted': [accuracy, prec_weighted, recall_weighted, f1_weighted, roc_auc_weighted],
+            'Micro': [accuracy, prec_micro, recall_micro, f1_micro, roc_auc_micro],
+            'Macro': [accuracy, prec_macro, recall_macro, f1_macro, roc_auc_macro]
+        })
 
     with col2:
-        # [Grouped bar plot code]
-        plt.figure(figsize=(6, 4))
-        ax = sns.barplot(x='Metric', y='value', hue='variable', data=pd.melt(df, ['Metric']))
-        plt.legend(loc='lower right', bbox_to_anchor=(1, -0.4), ncol=3)
-        plt.title('Model Performance Metrics')
-        for p in ax.patches:
-            ax.annotate(format(p.get_height(), '.2f'),
-                        (p.get_x() + p.get_width() / 2., p.get_height()),
-                        ha='center', va='center', xytext=(0, 10), textcoords='offset points')
-        st.pyplot(plt.gcf())
-        plt.clf()
+        fig, ax = plt.subplots(figsize=(12, 6))
+        bar_width = 0.25
+        r1 = np.arange(len(df))
+        r2 = [x + bar_width for x in r1]
+        r3 = [x + bar_width for x in r2]
+
+        bars1 = ax.bar(r1, df['Weighted'], width=bar_width, label='Weighted', color='b')
+        bars2 = ax.bar(r2, df['Micro'], width=bar_width, label='Micro', color='r')
+        bars3 = ax.bar(r3, df['Macro'], width=bar_width, label='Macro', color='g')
+
+        ax.set_xlabel('Metric', fontweight='bold')
+        ax.set_xticks([r + bar_width for r in range(len(df))])
+        ax.set_xticklabels(df['Metric'])
+        ax.legend()
+
+        # Add values on top of bars
+        for bars in [bars1, bars2, bars3]:
+            for bar in bars:
+                yval = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width()/2, yval, round(yval, 2), ha='center', va='bottom')
+        st.pyplot(fig)
+
+    # ROC curve for multiclass
+    n_classes = len(np.unique(true_labels))
+    fpr = dict()
+    tpr = dict()
+    roc_auc = dict()
+    for i in range(n_classes):
+        fpr[i], tpr[i], _ = metrics.roc_curve(np.array(pd.get_dummies(true_labels))[:, i], predicted_scores[:, i])
+        roc_auc[i] = metrics.auc(fpr[i], tpr[i])
 
     with col3:
-        # [ROC curve plotting code]
-        n_classes = len(np.unique(true_labels))
-        fpr = dict()
-        tpr = dict()
-        roc_auc = dict()
-        for i in range(n_classes):
-            fpr[i], tpr[i], _ = metrics.roc_curve(np.array(pd.get_dummies(true_labels))[:, i], predicted_scores[:, i])
-            roc_auc[i] = metrics.auc(fpr[i], tpr[i])
-        plt.figure(figsize=(6, 4))
+        plt.figure(figsize=(8, 6))
         for i, color in zip(range(n_classes), ['blue', 'red', 'green', 'yellow', 'purple']):
             plt.plot(fpr[i], tpr[i], color=color,
                      label='ROC curve of class {0} (area = {1:0.2f})'.format(i, roc_auc[i]))
@@ -135,9 +142,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
         plt.title('ROC curve for each class')
         plt.legend(loc="lower right")
         st.pyplot(plt.gcf())
-        plt.clf()
-
-
+        
 def main():
     st.set_page_config(page_title="AI Alert Classifier - Model Inference",
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
