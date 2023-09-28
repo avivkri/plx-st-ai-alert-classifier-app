@@ -91,8 +91,8 @@ def main():
 
                 st.subheader("Inference")
                 col1, col2, col3 = st.columns(3)
-                col1.metric("Alert Severity", alert_severity)
-                col2.metric("Score", rounded_score)
+                col1.metric("Alert Severity", alert_severity, "P0 - Warning, P1 - Critical, P2 - Error, P3 - Warning, P4 - Low")
+                col2.metric("Score", rounded_score, help="0 - 1")
                 confidence_help_md = '''0 - 75% = Bad\n
 75 - 90% = Average\n
 90 - 97% = Good\n
