@@ -85,7 +85,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
 
     # Accuracy plot
     plt.figure(figsize=(10, 6))
-    sns.barplot(x=['Accuracy'], y=[accuracy], palette='pastel')
+    sns.barplot(x=['Accuracy'], y=[accuracy], width=0.2, palette='pastel')
     plt.text(0, accuracy - 0.05, f"{accuracy:.2f}", ha='center')
     st.pyplot(plt.gcf())
 
