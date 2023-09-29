@@ -110,7 +110,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     ax.set_xlabel('Metric', fontweight='bold')
     ax.set_xticks([r + bar_width for r in range(len(df))])
     ax.set_xticklabels(df['Metric'])
-    ax.legend()
+    ax.legend(loc="bottom right")
 
     # Add values on top of bars
     for bars in [bars1, bars2, bars3]:
@@ -204,7 +204,7 @@ def main():
             df = pd.DataFrame.from_dict(response_stats)
             st.dataframe(df, hide_index=True)
             st.caption("Response data")
-            st.json(response_text, expanded=False)
+            st.json(response_text)
 
             train_data = pd.read_csv("./data.csv", header=None, names=["label", "inputs"])
 
