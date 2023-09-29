@@ -225,7 +225,7 @@ def main():
             predicted_scores = pd.get_dummies(df_predict.loc[: data_size - 1, "predicted_label"]).values
 
             # After the predictions, plot the metrics
-            st.subheader("Model Metrics")
+            st.subheader("Model metrics")
             plot_metrics(true_labels, predicted_labels, predicted_scores)
         except Exception as e:
             st.error(f"An error occurred: {e}")
