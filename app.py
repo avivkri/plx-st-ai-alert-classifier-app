@@ -151,7 +151,7 @@ def main():
     # Input text area
     input_data = st.text_area("Enter input data",
                               value="[pr-cp-reg-12345 - kube-system] - CPUThrottlingHigh -  throttling of CPU in namespace kube-system for container aws-vpc-cni-init in pod aris-kube-prometheus-stack-kube-state-metrics-785d575975-s2j2k.",
-                              height=200)
+                              height=100)
 
     # Submit button
     if st.button("Predict"):
