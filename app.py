@@ -110,7 +110,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     ax.set_xlabel('Metric', fontweight='bold')
     ax.set_xticks([r + bar_width for r in range(len(df))])
     ax.set_xticklabels(df['Metric'])
-    ax.legend(loc="bottom right")
+    ax.legend(loc="lower right")
 
     # Add values on top of bars
     for bars in [bars1, bars2, bars3]:
