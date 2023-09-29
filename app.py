@@ -85,16 +85,16 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
 
     # Accuracy plot
     plt.figure(figsize=(10, 6))
-    sns.barplot(x=['Accuracy'], y=[accuracy], width=0.2, palette='pastel')
+    sns.barplot(x=['Accuracy'], y=[accuracy], width=0.1, palette='pastel')
     plt.text(0, accuracy - 0.05, f"{accuracy:.2f}", ha='center')
     st.pyplot(plt.gcf())
 
     # Grouped Bar Plot for other metrics
     df = pd.DataFrame({
-        'Metric': ['accuracy', 'precision', 'recall', 'f1', 'roc_auc'],
-        'Weighted': [accuracy, prec_weighted, recall_weighted, f1_weighted, roc_auc_weighted],
-        'Micro': [accuracy, prec_micro, recall_micro, f1_micro, roc_auc_micro],
-        'Macro': [accuracy, prec_macro, recall_macro, f1_macro, roc_auc_macro]
+        'Metric': ['precision', 'recall', 'f1', 'roc_auc'],
+        'Weighted': [prec_weighted, recall_weighted, f1_weighted, roc_auc_weighted],
+        'Micro': [prec_micro, recall_micro, f1_micro, roc_auc_micro],
+        'Macro': [prec_macro, recall_macro, f1_macro, roc_auc_macro]
     })
 
     fig, ax = plt.subplots(figsize=(12, 6))
