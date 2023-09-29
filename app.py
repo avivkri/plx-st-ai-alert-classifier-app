@@ -103,9 +103,9 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     r2 = [x + bar_width for x in r1]
     r3 = [x + bar_width for x in r2]
 
-    bars1 = ax.bar(r1, df['Weighted'], width=bar_width, label='Weighted', color='#dc828f')
-    bars2 = ax.bar(r2, df['Micro'], width=bar_width, label='Micro', color='#f7ce76')
-    bars3 = ax.bar(r3, df['Macro'], width=bar_width, label='Macro', color='#9c9359')
+    bars1 = ax.bar(r1, df['Weighted'], width=bar_width, label='Weighted', color='#698396')
+    bars2 = ax.bar(r2, df['Micro'], width=bar_width, label='Micro', color='#7c98ab')
+    bars3 = ax.bar(r3, df['Macro'], width=bar_width, label='Macro', color='#a9c8c0')
 
     ax.set_xlabel('Metric', fontweight='bold')
     ax.set_xticks([r + bar_width for r in range(len(df))])
