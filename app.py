@@ -141,7 +141,27 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     plt.legend(loc="lower right")
     st.pyplot(plt.gcf())
 
+    # Precision-Recall curve for multiclass
+    precision = dict()
+    recall = dict()
+    average_precision = dict()
+    for i in range(n_classes):
+        precision[i], recall[i], _ = metrics.precision_recall_curve(np.array(pd.get_dummies(true_labels))[:, i], predicted_scores[:, i])
+        average_precision[i] = metrics.average_precision_score(np.array(pd.get_dummies(true_labels))[:, i], predicted_scores[:, i])
 
+    plt.figure(figsize=(8, 6))
+    for i, color in zip(range(n_classes), ['blue', 'red', 'green', 'yellow', 'purple']):
+        plt.plot(recall[i], precision[i], color=color,
+                 label='Precision-Recall curve of class {0} (area = {1:0.2f})'.format(i, average_precision[i]))
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.ylim([0.0, 1.05])
+    plt.xlim([0.0, 1.0])
+    plt.title('Precision-Recall curve for each class')
+    plt.legend(loc="upper right")
+    st.pyplot(plt.gcf())
+
+    
 def main():
     st.set_page_config(page_title="AI Alert Classifier - Model Inference",
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
