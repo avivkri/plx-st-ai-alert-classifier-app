@@ -141,6 +141,25 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     plt.legend(loc="lower right")
     st.pyplot(plt.gcf())
 
+    cm = confusion_matrix(true_labels, predicted_labels)
+    print(cm)
+    type(cm)
+    # Labels for the classes
+    labels = ["Class 0", "Class 1", "Class 2", "Class 3", "Class 4"]
+
+    # Define bins for discrete colormap
+    bins = [0, 1, 10, 50, 100, 200, 500, 600]
+    colors = sns.color_palette("pastel", len(bins) - 1)
+    colormap = plt.cm.colors.ListedColormap(colors)
+    norm = plt.cm.colors.BoundaryNorm(bins, colormap.N)
+
+    plt.figure(figsize=(5, 4))
+    ax = sns.heatmap(cm, annot=False, fmt="d", cmap=colormap, norm=norm, linewidths=0.5)
+    ax.set_title("Confusion Matrix")
+    ax.set_xlabel("Predicted labels")
+    ax.set_ylabel("True labels")
+    st.pyplot(plt.gcf())
+
     # Precision-Recall curve for multiclass
     precision = dict()
     recall = dict()
@@ -161,7 +180,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     plt.legend(loc="upper right")
     st.pyplot(plt.gcf())
 
-    
+
 def main():
     st.set_page_config(page_title="AI Alert Classifier - Model Inference",
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
