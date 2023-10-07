@@ -151,7 +151,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
 
     # Define bins for discrete colormap
     bins = [0, 1, 10, 50, 100, 200, 500, 600]
-    colors = sns.color_palette("Paired", len(bins) - 1)
+    colors = sns.color_palette("rocket", len(bins) - 1)
     colormap = plt.cm.colors.ListedColormap(colors)
     norm = plt.cm.colors.BoundaryNorm(bins, colormap.N)
 
