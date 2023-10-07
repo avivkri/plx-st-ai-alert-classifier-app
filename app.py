@@ -251,7 +251,7 @@ def main():
 
             test_data = train_data[["inputs"]]
 
-            with open("predict.csv.out", "r") as predict_file:
+            with open("predict_cleaned.csv.out", "r") as predict_file:
                 next(predict_file)
                 predict_all = [line.rstrip() for line in predict_file if line.rstrip()]
                 predict_all = [
