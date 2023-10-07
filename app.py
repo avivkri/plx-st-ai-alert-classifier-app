@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 import numpy as np
 from sklearn.metrics import confusion_matrix
+import ast
 
 
 def parse_response(query_response):
@@ -252,11 +253,11 @@ def main():
             test_data = train_data[["inputs"]]
 
             with open("predict_cleaned.csv.out", "r") as predict_file:
-                next(predict_file)
-                predict_all = [line.rstrip() for line in predict_file if line.rstrip()]
-                predict_all = [
-                    {"predicted_label": int(predict_line.split(',')[0][-1]), "score": predict_line.split(',')[1]} for
-                    predict_line in predict_all]
+                predict_all = [ast.literal_eval(line.rstrip()) for line in predict_file]
+                predict_all = [{"predicted_label": int(predict_line['predicted_label'][-1]),
+                                "score": predict_line['probabilities'][
+                                    predict_line['labels'].index(predict_line['predicted_label'])]} for predict_line in
+                               predict_all]
 
             data_size = len(test_data)
             df_predict = pd.DataFrame(predict_all)
