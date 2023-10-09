@@ -243,11 +243,11 @@ def main():
             }
 
             col4, col5 = st.columns(2)
-            col4.subheader("Response statistics")
+            col4.subheader("Response data")
+            col4.json(response_text)
+            col5.subheader("Response statistics")
             df = pd.DataFrame.from_dict(response_stats)
-            col4.dataframe(df, hide_index=True)
-            col5.subheader("Response data")
-            col5.json(response_text)
+            col5.dataframe(df, hide_index=True)
 
             train_data = pd.read_csv("./data.csv", header=None, names=["label", "inputs"])
 
