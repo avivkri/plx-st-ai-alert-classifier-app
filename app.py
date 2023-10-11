@@ -188,13 +188,13 @@ def main():
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
     st.title(":violet[AI Alert Classifier] :grey[-] Model Inference")
 
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.image("https://img.shields.io/badge/model-distilbert--base--uncased-blue")
-    with col2:
-        st.image("https://img.shields.io/badge/desc-oversampledx50--custom--sev-blue")
-    with col3:
-        st.image("https://img.shields.io/badge/version-0.1.0-green")
+    images = [
+        "https://img.shields.io/badge/model-distilbert--base--uncased-blue",
+        "https://img.shields.io/badge/desc-oversampledx50--custom--sev-blue",
+        "https://img.shields.io/badge/version-0.1.0-green"
+    ]
+
+    st.markdown(" ".join(f"![]({img})" for img in images), unsafe_allow_html=True)
 
     st.subheader("Input")
     # Input text area
