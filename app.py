@@ -179,7 +179,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     plt.ylim([0.0, 1.05])
     plt.xlim([0.0, 1.0])
     plt.title('Precision-Recall curve for each class')
-    plt.legend(loc="upper right")
+    plt.legend(loc="lower left")
     st.pyplot(plt.gcf())
 
 
