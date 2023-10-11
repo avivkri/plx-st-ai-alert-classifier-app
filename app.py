@@ -156,7 +156,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     norm = plt.cm.colors.BoundaryNorm(bins, colormap.N)
 
     plt.figure(figsize=(5, 4))
-    ax = sns.heatmap(cm, annot=False, fmt="d", cmap=colormap, norm=norm, linewidths=0.5)
+    ax = sns.heatmap(cm, annot=True, fmt="d", cmap=colormap, norm=norm, linewidths=0.5)
     ax.set_title("Confusion Matrix")
     ax.set_xlabel("Predicted labels")
     ax.set_ylabel("True labels")
