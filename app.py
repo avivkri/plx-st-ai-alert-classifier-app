@@ -188,6 +188,10 @@ def main():
                        page_icon="https://budibase-bucket-3.s3.eu-west-1.amazonaws.com/logos/ai-alert-violet.png")
     st.title(":violet[AI Alert Classifier] :grey[-] Model Inference")
 
+    st.image("https://img.shields.io/badge/model-distilbert--base--uncased-blue")
+    st.image("https://img.shields.io/badge/desc-oversampledx50--custom--sev-blue")
+    st.image("https://img.shields.io/badge/version-0.1.0-green")
+
     st.subheader("Input")
     # Input text area
     input_data = st.text_area("Enter input data",
