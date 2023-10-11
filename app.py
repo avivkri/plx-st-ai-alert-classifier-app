@@ -87,7 +87,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
 
     # Accuracy plot
     plt.figure(figsize=(10, 6))
-    sns.barplot(x=['Accuracy'], y=[accuracy], hue=['Accuracy'], width=0.1, palette='pastel', legend=True)
+    sns.barplot(x=['Accuracy'], y=[accuracy], hue=['Accuracy'], width=0.1, palette='pastel', legend=False)
     plt.text(0, accuracy - 0.05, f"{accuracy}", ha='center')
     st.pyplot(plt.gcf())
 
@@ -144,8 +144,6 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     st.pyplot(plt.gcf())
 
     cm = confusion_matrix(true_labels, predicted_labels)
-    print(cm)
-    type(cm)
     # Labels for the classes
     labels = ["Class 0", "Class 1", "Class 2", "Class 3", "Class 4"]
 
