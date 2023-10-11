@@ -88,7 +88,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     # Accuracy plot
     plt.figure(figsize=(10, 6))
     sns.barplot(x=['Accuracy'], y=[accuracy], width=0.1, palette='pastel')
-    plt.text(0, accuracy - 0.05, f"{accuracy:.2f}", ha='center')
+    plt.text(0, accuracy - 0.05, f"{accuracy}", ha='center')
     st.pyplot(plt.gcf())
 
     # Grouped Bar Plot for other metrics
@@ -118,7 +118,7 @@ def plot_metrics(true_labels, predicted_labels, predicted_scores):
     for bars in [bars1, bars2, bars3]:
         for bar in bars:
             yval = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width() / 2, yval, round(yval, 2), ha='center', va='bottom')
+            ax.text(bar.get_x() + bar.get_width() / 2, yval, round(yval, 3), ha='center', va='bottom')
     st.pyplot(fig)
 
     # ROC curve for multiclass
