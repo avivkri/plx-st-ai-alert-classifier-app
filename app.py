@@ -187,8 +187,8 @@ def main():
     st.title(":violet[AI Alert Classifier] :grey[-] Model Inference")
 
     images = [
-        "https://img.shields.io/badge/model-distilbert--base--uncased-blue",
-        "https://img.shields.io/badge/desc-simplified--placeholders--intact--custom--sev-blue",
+        "https://img.shields.io/badge/base--model-distilbert--base--uncased-blue",
+        "https://img.shields.io/badge/trained--with-simplified--placeholders--intact--custom--sev-blue",
         "https://img.shields.io/badge/version-0.1.0-green"
     ]
 
