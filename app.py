@@ -188,7 +188,7 @@ def main():
 
     images = [
         "https://img.shields.io/badge/base--model-distilbert--base--uncased-blue",
-        "https://img.shields.io/badge/trained--with-2.0_alrt--ttl--plchldrs--subst--cust--sev--ns--osmpldx50-blue",
+        "https://img.shields.io/badge/trained--with-4.0--alrt--ttl--plchldrs--maskd--cust--sev--ns--osmpldx50-blue",
         "https://img.shields.io/badge/version-0.1.0-green"
     ]
 
