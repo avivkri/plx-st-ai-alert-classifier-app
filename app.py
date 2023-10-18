@@ -188,11 +188,11 @@ def main():
 
     images = [
         "https://img.shields.io/badge/base--model-distilbert--base--uncased-blue",
-        "https://img.shields.io/badge/trained--with-simplified--placeholders--intact--masked--oversampled--custom--sev-blue",
+        "https://img.shields.io/badge/trained--with-2.0_alrt--ttl--plchldrs--subst--cust--sev--ns--osmpldx50-blue",
         "https://img.shields.io/badge/version-0.1.0-green"
     ]
 
-    st.markdown(" ".join(f"![]({img})" for img in images), unsafe_allow_html=True)
+    st.markdown("<br>".join(f"![]({img})" for img in images), unsafe_allow_html=True)
 
     st.subheader("Input")
     # Input text area
